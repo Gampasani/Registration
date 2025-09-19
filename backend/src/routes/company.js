@@ -1,0 +1,10 @@
+import express from "express";
+import { body } from "express-validator";
+import { createCompany, getCompanies, updateCompany, deleteCompany } from "../controllers/companyController.js";
+import { protect } from "../middleware/authMiddleware.js";
+const router = express.Router();
+router.get("/", getCompanies);
+router.post("/", protect, body("company_name").notEmpty().withMessage("Company name is required"), body("industry").notEmpty().withMessage("Industry is required"), createCompany);
+router.put("/:id", protect, body("company_name").notEmpty().withMessage("Company name is required"), body("industry").notEmpty().withMessage("Industry is required"), updateCompany);
+router.delete("/:id", protect, deleteCompany);
+export default router;
