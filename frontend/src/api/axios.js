@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://registration-backend-m51u.onrender.com/api", // 👈 Render backend URL
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
 });
 
 // ✅ Automatically add token if available
